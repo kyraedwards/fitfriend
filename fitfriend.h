@@ -11,14 +11,15 @@ class FitFriend : public QMainWindow
 {
     Q_OBJECT
 
-    
-private slots:
-    void input_data();
-    
 
 public:
     explicit FitFriend(QWidget *parent = nullptr);
     ~FitFriend();
+
+
+public slots:
+    void input_data();
+
 
 
 private:

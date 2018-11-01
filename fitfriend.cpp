@@ -44,4 +44,4 @@ void FitFriend::input_data(){
    welcome->show();
 
 
-}
+};
