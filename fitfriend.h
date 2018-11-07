@@ -12,13 +12,16 @@ class FitFriend : public QMainWindow
     Q_OBJECT
 
 
+public slots:
+    void input_data();
+    void Add_Workout();
+
+
+
 public:
     explicit FitFriend(QWidget *parent = nullptr);
     ~FitFriend();
 
-
-public slots:
-    void input_data();
 
 
 
