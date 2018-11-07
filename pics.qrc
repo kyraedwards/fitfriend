@@ -1,0 +1,9 @@
+<RCC>
+    <qresource prefix="/">
+        <file>runners</file>
+        <file>success</file>
+        <file>runner_shoes</file>
+        <file>runner_road</file>
+    </qresource>
+    <qresource prefix="/new/prefix1"/>
+</RCC>
