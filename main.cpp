@@ -8,20 +8,22 @@
 #include <QVector>
 
 
-int main(int argc, char *argv[])
-{
+int main(int argc, char *argv[]) {
+
     QApplication a(argc, argv);
     FitFriend w;
-    QWidget *wid = new QWidget;
     w.show();
     w.setBaseSize(100, 80);
+
+    QWidget *wid = new QWidget;
+
 
 
 //sets up main layout
     QVBoxLayout* overall_layout= new QVBoxLayout;
     QLabel* Intro = new QLabel("Hi, I'm your Fit Friend");
     QFont intro_font("Helvetica", QFont::Bold,  18);
-       Intro->setFont(intro_font);
+    Intro->setFont(intro_font);
     overall_layout->addWidget(Intro);
     overall_layout->setAlignment(Intro, Qt::AlignCenter);
 
