@@ -35,16 +35,16 @@ void FitFriend::input_data(){
     w.show();
 
 
-    QLabel* welcome = new QLabel("Hey! What do you want to input?");
+    QLabel* welcome = new QLabel("Hello! What do you want to input?");
     QPushButton* button = new QPushButton("Push me");
     QWidget* wid = new QWidget;
     QVBoxLayout* layout= new QVBoxLayout;
-    welcome->show();
+    //welcome->show();
 
-
+    wid->setLayout(layout);
     layout->addWidget(welcome);
     layout->addWidget(button);
-    wid->setLayout(layout);
+
     wid->show();
 
     QObject::connect(button, SIGNAL(clicked()), &w, SLOT(Add_Workout()) );
@@ -52,6 +52,7 @@ void FitFriend::input_data(){
 
 
 
+    //why dont these lines of code work?
 //    w.setCentralWidget(wid);
 
    // w.setLayout(layout);
@@ -62,7 +63,7 @@ void FitFriend::input_data(){
 
 }
 
-void FitFriend::Add_Workout(){
+void FitFriend::add_workout(){
     QLabel* workout= new QLabel("Add yout workout");
     workout->show();
 
