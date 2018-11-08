@@ -7,6 +7,7 @@
 #include <QObject>
 #include <QVector>
 
+
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
@@ -26,8 +27,7 @@ int main(int argc, char *argv[])
 
 
 
-    //will hold the options on the left side of the main menu
-    QVBoxLayout* options = new QVBoxLayout;
+
     QVector<QPushButton*> main_menu;
     main_menu.push_back(new QPushButton("Input Data"));
     main_menu.push_back(new QPushButton("My Progress"));
@@ -37,6 +37,8 @@ int main(int argc, char *argv[])
     main_menu.push_back(new QPushButton("Set My Goals"));
 
 
+    //will hold the options on the left side of the main menu
+    QVBoxLayout* options = new QVBoxLayout;
 
     //adds all of the buttons to the main menu
     for(size_t i=0; i < main_menu.length(); ++i){
@@ -48,12 +50,12 @@ int main(int argc, char *argv[])
     QObject::connect(main_menu[0], SIGNAL(clicked()), &w, SLOT(input_data()));
 
 
-       //right hand side picture
-      QPixmap runners(":/success");
-      QLabel* picture= new QLabel;
-      picture->setPixmap(runners);
-      picture->setScaledContents(true);
-    picture->setFixedSize(400, 200);
+     //right hand side picture
+     QPixmap runners(":/success");
+     QLabel* picture= new QLabel;
+     picture->setPixmap(runners);
+     picture->setScaledContents(true);
+     picture->setFixedSize(400, 200);
 
 
     //will layout the buttons on the left side of the main menu and the photo on the right side of the main menu
@@ -73,9 +75,6 @@ int main(int argc, char *argv[])
 
     wid->setLayout(overall_layout);
     w.setCentralWidget(wid);
-
-
-
 
 
     return a.exec();
