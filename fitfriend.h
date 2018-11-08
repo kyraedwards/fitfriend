@@ -14,7 +14,7 @@ class FitFriend : public QMainWindow
 
 public slots:
     void input_data();
-    void Add_Workout();
+    void add_workout();
 
 
 
