@@ -1,7 +1,19 @@
+
 #ifndef FITFRIEND_H
 #define FITFRIEND_H
 
 #include <QMainWindow>
+#include <QDir>
+#include <QDialog>
+#include <QLabel>
+#include <QString>
+#include <QBitmap>
+#include <QPainter>
+#include <QDir>
+#include <QObject>
+#include <QMediaPlayer>
+
+
 
 namespace Ui {
 class FitFriend;
@@ -15,20 +27,10 @@ class FitFriend : public QMainWindow
 public slots:
 
       //opens window that gives user the options of different types of fitness data to input
-      void input_data();
+      void open_input_data();
 
-//    //opens window to allow user to input workout
- //  void add_workout();
-
-//    //opens window to allow user to input meal
-      //void add_meal();
-
-//    //opens window to allow user to input run
-//    void add_run();
-
-//    //opens window to allow user to input weight
-//    void add_weight();
-
+      //open the "advice from kyra" window
+      void open_advice_from_kyra();
 
 public:
     explicit FitFriend(QWidget *parent = nullptr);
