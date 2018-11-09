@@ -8,9 +8,8 @@
 #include <QVector>
 #include <QMediaObject>
 #include <QMediaPlayer>
-#include "advice_from_kyra.h"
-
-
+//#include "advice_from_kyra.h"
+//#include "my_progress.h"
 
 
 int main(int argc, char *argv[])
@@ -22,11 +21,11 @@ int main(int argc, char *argv[])
     w.setBaseSize(100, 80);
 
 
-//sets up main layout
+    //sets up main layout
     QVBoxLayout* overall_layout= new QVBoxLayout;
     QLabel* Intro = new QLabel("Hi, I'm your Fit Friend");
     QFont intro_font("Helvetica", QFont::Bold,  18);
-       Intro->setFont(intro_font);
+    Intro->setFont(intro_font);
     overall_layout->addWidget(Intro);
     overall_layout->setAlignment(Intro, Qt::AlignCenter);
 
@@ -39,6 +38,7 @@ int main(int argc, char *argv[])
     main_menu.push_back(new QPushButton("My Progress"));
     main_menu.push_back(new QPushButton("Previous Workouts"));
     main_menu.push_back(new QPushButton("Advice From Kyra"));
+
     main_menu.push_back(new QPushButton("Plan My Route"));
     main_menu.push_back(new QPushButton("Set My Goals"));
 
@@ -52,13 +52,17 @@ int main(int argc, char *argv[])
 
     //input menu
     QObject::connect(main_menu[0], SIGNAL(clicked()), &w, SLOT(open_input_data()));
+    QObject::connect(main_menu[1], SIGNAL(clicked()), &w, SLOT(open_my_progress()));
+    QObject::connect(main_menu[2], SIGNAL(clicked()), &w, SLOT(open_previous_workouts()));
     QObject::connect(main_menu[3], SIGNAL(clicked()), &w, SLOT(open_advice_from_kyra()));
+    QObject::connect(main_menu[4], SIGNAL(clicked()), &w, SLOT(open_plan_my_route()));
+    QObject::connect(main_menu[5], SIGNAL(clicked()), &w, SLOT(open_set_my_goals()));
 
-       //right hand side picture
-      QPixmap runners(":/success");
-      QLabel* picture= new QLabel;
-      picture->setPixmap(runners);
-      picture->setScaledContents(true);
+    //right hand side picture
+    QPixmap runners(":/success");
+    QLabel* picture= new QLabel;
+    picture->setPixmap(runners);
+    picture->setScaledContents(true);
     picture->setFixedSize(400, 200);
 
 
