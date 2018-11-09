@@ -12,26 +12,6 @@ input_data_window::input_data_window(QWidget *parent) :
 {
     ui->setupUi(this);
 
-
-
-}
-
-
-
-input_data_window::~input_data_window()
-{
-    delete ui;
-}
-
-
-void input_data_window::input_data() {
-
-    //window to host data input options
-    input_data_window* data_input_window_ptr = new input_data_window;
-    data_input_window_ptr->show();
-    data_input_window_ptr->setWindowTitle("Input data here!");
-
-
     //introductory label
     QLabel* intro_label = new QLabel("Select what you wish to input.");
 
@@ -44,10 +24,10 @@ void input_data_window::input_data() {
 
 
     //connect 4 add buttons to their respective SLOTS
-    QObject::connect(add_meal_button, SIGNAL(pressed()), data_input_window_ptr, SLOT(add_meal()));
-    QObject::connect(add_workout_button, SIGNAL(pressed()), data_input_window_ptr, SLOT(add_workout()));
-    QObject::connect(add_weight_button, SIGNAL(pressed()), data_input_window_ptr, SLOT(add_weight()));
-    QObject::connect(add_run_button, SIGNAL(pressed()), data_input_window_ptr, SLOT(add_run()));
+    QObject::connect(add_meal_button, SIGNAL(pressed()), this, SLOT(add_meal()));
+    QObject::connect(add_workout_button, SIGNAL(pressed()), this, SLOT(add_workout()));
+    QObject::connect(add_weight_button, SIGNAL(pressed()), this, SLOT(add_weight()));
+    QObject::connect(add_run_button, SIGNAL(pressed()), this, SLOT(add_run()));
 
 
     //layout to structure the intro label and buttons to add fitness data
@@ -62,10 +42,17 @@ void input_data_window::input_data() {
     //hosts entire data input window
     QWidget* wid = new QWidget;
     wid->setLayout(label_and_buttons);
-    data_input_window_ptr->setCentralWidget(wid);
-
+    setCentralWidget(wid);
+    this->show();
 
 }
+
+
+input_data_window::~input_data_window()
+{
+    delete ui;
+}
+
 
 
 
