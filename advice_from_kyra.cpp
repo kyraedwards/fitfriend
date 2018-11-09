@@ -17,11 +17,6 @@ advice_from_kyra::advice_from_kyra(QWidget *parent) :
 
 
 
-
-
-
-
-
 advice_from_kyra::~advice_from_kyra()
 {
     delete ui;
