@@ -34,7 +34,6 @@ public slots:
 
 public:
     explicit input_data_window(QWidget *parent = nullptr);
-    void input_data();
     ~input_data_window();
 
 
@@ -46,3 +45,4 @@ private:
 
 
 #endif // INPUT_DATA_WINDOW_H
+
