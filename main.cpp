@@ -6,30 +6,34 @@
 #include <QPushButton>
 #include <QObject>
 #include <QVector>
+#include <QMediaObject>
+#include <QMediaPlayer>
+#include "advice_from_kyra.h"
 
 
-int main(int argc, char *argv[]) {
 
+
+int main(int argc, char *argv[])
+{
     QApplication a(argc, argv);
     FitFriend w;
+    QWidget *wid = new QWidget;
     w.show();
     w.setBaseSize(100, 80);
-
-    QWidget *wid = new QWidget;
-
 
 
 //sets up main layout
     QVBoxLayout* overall_layout= new QVBoxLayout;
     QLabel* Intro = new QLabel("Hi, I'm your Fit Friend");
     QFont intro_font("Helvetica", QFont::Bold,  18);
-    Intro->setFont(intro_font);
+       Intro->setFont(intro_font);
     overall_layout->addWidget(Intro);
     overall_layout->setAlignment(Intro, Qt::AlignCenter);
 
 
 
-
+    //will hold the options on the left side of the main menu
+    QVBoxLayout* options = new QVBoxLayout;
     QVector<QPushButton*> main_menu;
     main_menu.push_back(new QPushButton("Input Data"));
     main_menu.push_back(new QPushButton("My Progress"));
@@ -39,8 +43,6 @@ int main(int argc, char *argv[]) {
     main_menu.push_back(new QPushButton("Set My Goals"));
 
 
-    //will hold the options on the left side of the main menu
-    QVBoxLayout* options = new QVBoxLayout;
 
     //adds all of the buttons to the main menu
     for(size_t i=0; i < main_menu.length(); ++i){
@@ -49,15 +51,15 @@ int main(int argc, char *argv[]) {
 
 
     //input menu
-    QObject::connect(main_menu[0], SIGNAL(clicked()), &w, SLOT(input_data()));
+    QObject::connect(main_menu[0], SIGNAL(clicked()), &w, SLOT(open_input_data()));
+    QObject::connect(main_menu[3], SIGNAL(clicked()), &w, SLOT(open_advice_from_kyra()));
 
-
-     //right hand side picture
-     QPixmap runners(":/success");
-     QLabel* picture= new QLabel;
-     picture->setPixmap(runners);
-     picture->setScaledContents(true);
-     picture->setFixedSize(400, 200);
+       //right hand side picture
+      QPixmap runners(":/success");
+      QLabel* picture= new QLabel;
+      picture->setPixmap(runners);
+      picture->setScaledContents(true);
+    picture->setFixedSize(400, 200);
 
 
     //will layout the buttons on the left side of the main menu and the photo on the right side of the main menu
@@ -77,6 +79,9 @@ int main(int argc, char *argv[]) {
 
     wid->setLayout(overall_layout);
     w.setCentralWidget(wid);
+
+
+
 
 
     return a.exec();
