@@ -13,8 +13,15 @@ class input_data_window : public QMainWindow
 {
     Q_OBJECT
 
+public:
+    explicit input_data_window(QWidget *parent = nullptr, FitFriend* i_parent_window = nullptr);
+    ~input_data_window();
+
 
 public slots:
+
+    //exits the input data window and returns to the apps main window
+    void return_to_main();
 
     //opens window to allow user to input workout
     void add_workout();
@@ -29,16 +36,11 @@ public slots:
     void add_weight();
 
 
-public:
-    explicit input_data_window(QWidget *parent = nullptr);
-    ~input_data_window();
-
-
-
-
 private:
     Ui::FitFriend *ui;
+    FitFriend* parent_window;
 };
 
 
 #endif // INPUT_DATA_WINDOW_H
+
