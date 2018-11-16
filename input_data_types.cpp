@@ -93,3 +93,33 @@ input_data::input_data() : m_start_time(Time()), m_date (Date()) {};
 //ctor with 2 parameters for input_data object
 //set parameters to respective member variables
 input_data::input_data(const Time& i_start_time, const Date& i_date) : m_start_time(i_start_time), m_date(i_date) {};
+
+//Profile
+
+
+
+
+//Run
+ Run::Run():
+ Run::Run(const Time &start_time, const Date & start_date, double d, double cals, const Time &len)
+:input_data(start_time,start_date),distance(d), length(len){
+    cals_burned= Profile::cals_burned(len);
+ };
+
+
+//Meal
+Meal::Meal( const Time &start_time, const Date& start_date, std::string i_food, std::string i_bev, double i_food_cals=0,
+     double i_bev_cals=0, double i_food_fat=0,double i_bev_fat=0, double i_food_prot=0, double i_bev_prot=0 ):
+    input_data(start_time, start_date):food(i_food), bev(i_bev), food_cals(i_food_cals), bev_cals(i_bev_cals),
+    food_fat(i_food_fat), bev_fat(i_bev_fat), food_prot(i_food_prot), bev_prot(i_bev_prot){};
+
+
+//Weight
+ Weight::Weight(const Time &start_time, const Date & start_date, double w):input_data(start_time, start_date)kgs(w) {};
+Weight::update_profile(){
+ }
+
+//Workout
+ Workout::Workout(const Time &start_time, const Date& start_date, const Time &len){
+     cals_burned = Profile::calc_cals(len);
+ };
