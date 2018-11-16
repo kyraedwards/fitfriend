@@ -1,7 +1,12 @@
 #include "input_data_types.h"
 
+
 //default ctor for Time object
 Time::Time() : m_hours(0), m_minutes(0), m_seconds(0) {};
+
+
+//copy ctor for time object
+Time::Time(const Time& i_time) : m_hours(i_time.m_hours), m_minutes(i_time.m_minutes), m_seconds(i_time.m_seconds) {};
 
 
 //3 parameter ctor for Time object
@@ -22,7 +27,7 @@ Time operator- (const Time& left, const Time& right){
     //will be values of returned time
     int hours = 0;
     int minutes = 0;
-    int seconds = 0;
+    double seconds = 0;
 
 
         //right hand time has more seconds, need to borrow from hours/minutes
@@ -77,10 +82,10 @@ Date::Date() : m_day(0), m_month(0), m_year(0) {};
 
 //copy ctor for Date object
 Date::Date(const Date& i_date) : m_day(i_date.m_day), m_month(i_date.m_month), m_year(i_date.m_year) {};
-              
+
 //Date ctor with 3 parameters
-Date::Date(int i_day, int i_month, int i_year) : m_day(i_day), m_month(i_month), m_year(i_year) {};                            
-                                                
+Date::Date(int i_day, int i_month, int i_year) : m_day(i_day), m_month(i_month), m_year(i_year) {};
+
 
 //default ctor for input_data object
 input_data::input_data() : m_start_time(Time()), m_date (Date()) {};
