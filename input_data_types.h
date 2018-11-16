@@ -1,5 +1,8 @@
 #ifndef INPUT_DATA_TYPES_H
 #define INPUT_DATA_TYPES_H
+#include "string"
+
+
 
 class Time{
 
@@ -80,6 +83,7 @@ private:
 
 };
 
+//class declerations
 
 class Profile{
 public:
@@ -95,11 +99,11 @@ public:
         weight= kgs;
         //weight change will change daily cals and calc cals.
         update_daily_cals(kgs);
-    };
+    }
  private:
-    friend class weight;
-    friend Workout;
-    friend Run;
+    friend class Weight;
+    friend class Workout;
+    friend class Run;
     double weight;
     double height;
     char sex;
@@ -130,7 +134,7 @@ public:
         std::string food, bev;
         double food_cals, bev_cals, food_fat, bev_fat, food_prot, bev_prot;
  };
- 
+
 
 
 
