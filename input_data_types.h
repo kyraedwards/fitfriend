@@ -1,8 +1,6 @@
 #ifndef INPUT_DATA_TYPES_H
 #define INPUT_DATA_TYPES_H
-#include "string"
-
-
+#include <string>
 
 class Time{
 
@@ -80,8 +78,8 @@ private:
     Time m_start_time;
     Date m_date;
 
-
 };
+
 
 //class declerations
 
@@ -100,6 +98,7 @@ public:
         //weight change will change daily cals and calc cals.
         update_daily_cals(kgs);
     }
+
  private:
     friend class Weight;
     friend class Workout;
@@ -111,13 +110,16 @@ public:
     int age;
     double daily_cals;
  };
- class Run: public input_data{
+class Run: public input_data{
 public:
-     //default, sets all vals =0
+
+    //default, sets all vals =0
     Run();
-     //constructs base class object and user input.
+
+    //constructs base class object and user input.
     Run(const Time &start_time, const Date &start_date,  double d, const Time &len);
- private:
+
+private:
     double distance, cals_burned;
     Time length;
  };
@@ -125,7 +127,7 @@ public:
 
 
  //Meal
- class Meal: public input_data{
+class Meal: public input_data{
 public:
      //construct, base classs objecy and member fields initialized.
     Meal(const Time &start_time, const Date& start_date, std::string i_food, std::string i_bev, double i_food_cals=0,
@@ -138,39 +140,41 @@ public:
 
 
 
- class Weight: public input_data{
+class Weight: public input_data{
 public:
     //defualt
     Weight();
+
     //gives daily weight to profile
     void update_profile() ;
-     //constructer with base class
+
+    //constructer with base class
     Weight(const Time &start_time, const Date & start_date, double w);
- private:
- double kgs;
+
+private:
+    double kgs;
 };
 
 
 
-
-
- class Workout: public input_data{
+class Workout: public input_data{
 public:
-//default
+
+    //default
     Workout();
-//constructor w/ params
+
+    //constructor w/ params
     Workout(const Time &start_time, const Date& start_date, const Time &len);
+
  private:
+
     //note, this member field is not initialized inconstructor, it is done through profile class fn, calc_cal.
     //which can be called inside the constructor.
     double cals_burned;
+
     //user entered
     Time length;
  };
-
-
-
-
 
 
 
