@@ -5,6 +5,8 @@
 #include <QWidget>
 #include <QVBoxLayout>
 #include <QPushButton>
+#include <QSpinBox>
+#include <QLineEdit>
 
 input_data_window::input_data_window(QWidget *parent) :
     QMainWindow(parent),
@@ -79,29 +81,70 @@ void input_data_window::add_meal(){
 
 
    QLabel* meal= new QLabel("Add yout meal below");
-   //need corresponding input text boxes and such
-   QLabel* time_and_date = new QLabel("What were the time and date of this meal");
-   QLabel* name_of_food = new QLabel("What food did you eat");
-   QLabel* calories_of_food = new QLabel("How many calories were in the food");
-   QLabel* fat_of_food = new QLabel("How many grams of fat were in the food");
-   QLabel* protein_of_food = new QLabel("How many grams of protein were in the food");
+   QLabel* time_and_date = new QLabel("What were the time and date of this meal?");
+
+   QLabel* name_of_food = new QLabel("What food did you eat?");
+   //need text box
+   QLineEdit* food_name_input_box = new QLineEdit("Type name of food here");
+
+
+   QLabel* calories_in_food = new QLabel("How many calories were in the food?");
+   QSpinBox *calories_in_food_spin_box = new QSpinBox;
+   calories_in_food_spin_box->setRange(0, 2000);
+   calories_in_food_spin_box->setValue(500);
+
+   QLabel* fat_in_food = new QLabel("How many grams of fat were in the food?");
+   QSpinBox *fat_in_food_spin_box = new QSpinBox;
+   fat_in_food_spin_box->setRange(0, 100);
+   fat_in_food_spin_box->setValue(5);
+
+   QLabel* protein_in_food = new QLabel("How many grams of protein were in the food?");
+   QSpinBox *protein_in_food_spin_box = new QSpinBox;
+   protein_in_food_spin_box->setRange(0, 100);
+   protein_in_food_spin_box->setValue(5);
 
    //need corresponding input text boxes
-   QLabel* name_of_drink = new QLabel("What was your drink");
-   QLabel* calories_of_drink = new QLabel("How many calories were in the drink");
-   QLabel* fat_of_drink = new QLabel("How many grams of fat were in the drink");
-   QLabel* protein_of_drink = new QLabel("How many grams of protein were in the drink");
+   QLabel* name_of_drink = new QLabel("What was your drink?");
+   QLineEdit* drink_name_input_box = new QLineEdit("Type name of drink here");
+
+
+   QLabel* calories_in_drink = new QLabel("How many calories were in the drink?");
+   QSpinBox *calories_in_drink_spin_box = new QSpinBox;
+   calories_in_drink_spin_box->setRange(0, 100);
+   calories_in_drink_spin_box->setValue(200);
+
+
+   QLabel* fat_in_drink = new QLabel("How many grams of fat were in the drink?");
+   QSpinBox *fat_in_drink_spin_box = new QSpinBox;
+   fat_in_drink_spin_box->setRange(0, 100);
+   fat_in_drink_spin_box->setValue(0);
+
+
+   QLabel* protein_in_drink = new QLabel("How many grams of protein were in the drink?");
+   QSpinBox *protein_in_drink_spin_box = new QSpinBox;
+   protein_in_drink_spin_box->setRange(0, 100);
+   protein_in_drink_spin_box->setValue(0);
+
 
    layout->addWidget(meal);
    layout->addWidget(time_and_date);
    layout->addWidget(name_of_food);
-   layout->addWidget(calories_of_food);
-   layout->addWidget(fat_of_food);
-   layout->addWidget(protein_of_food);
+   layout->addWidget(food_name_input_box);
+   layout->addWidget(calories_in_food);
+   layout->addWidget(calories_in_food_spin_box);
+   layout->addWidget(fat_in_food);
+   layout->addWidget(fat_in_food_spin_box);
+   layout->addWidget(protein_in_food);
+   layout->addWidget(protein_in_food_spin_box);
    layout->addWidget(name_of_drink);
-   layout->addWidget(calories_of_drink);
-   layout->addWidget(fat_of_drink);
-   layout->addWidget(protein_of_drink);
+   layout->addWidget(drink_name_input_box);
+   layout->addWidget(calories_in_drink);
+   layout->addWidget(calories_in_drink_spin_box);
+   layout->addWidget(fat_in_drink);
+   layout->addWidget(fat_in_drink_spin_box);
+   layout->addWidget(protein_in_drink);
+   layout->addWidget(protein_in_drink_spin_box);
+
 
    QWidget* wid = new QWidget;
    wid->setLayout(layout);
