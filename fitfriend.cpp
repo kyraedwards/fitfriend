@@ -12,6 +12,7 @@
 #include "set_my_goals.h"
 
 
+
 FitFriend::FitFriend(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::FitFriend)
@@ -28,8 +29,7 @@ this->setPalette(palette);
 
 //background music
 QMediaPlayer* music = new QMediaPlayer();
-//music->setMedia(QUrl("qrc:/music"));
-music->setMedia(QUrl::fromLocalFile("qrc:/../../Music/iTunes/iTunes Media/Music/Talk Talk/Unknown Album/It's My Life.mp3"));
+music->setMedia(QUrl("qrc:/music.mp3"));
 
 music->play();
 
@@ -44,32 +44,35 @@ FitFriend::~FitFriend()
 
 
 void FitFriend::open_input_data() {
-    input_data_window* input_data_ptr = new input_data_window;
+    this->hide();
+    input_data_window* input_data_ptr = new input_data_window(nullptr, this);
 }
 
 
 void FitFriend::open_advice_from_kyra(){
-    advice_from_kyra* advice_from_kyra_ptr = new advice_from_kyra;
+    this->hide();
+    advice_from_kyra* advice_from_kyra_ptr = new advice_from_kyra(nullptr, this);
 }
 
 
 void FitFriend::open_my_progress(){
-    my_progress* my_progress_ptr = new my_progress;
+    this->hide();
+    my_progress* my_progress_ptr = new my_progress(nullptr, this);
 }
 
 
 void FitFriend::open_previous_workouts(){
-    previous_workouts* previous_workouts_ptr = new previous_workouts;
+    this->hide();
+    previous_workouts* previous_workouts_ptr = new previous_workouts(nullptr, this);
 }
 
 void FitFriend::open_plan_my_route(){
-    plan_my_route* plan_my_route_ptr = new plan_my_route;
+    this->hide();
+    plan_my_route* plan_my_route_ptr = new plan_my_route(nullptr, this);
 }
 
 void FitFriend::open_set_my_goals(){
-    set_my_goals* set_my_goals_ptr = new set_my_goals;
+    this->hide();
+    set_my_goals* set_my_goals_ptr = new set_my_goals(nullptr, this);
 }
-
-
-
 
