@@ -1,6 +1,5 @@
 #include "input_data_types.h"
 
-
 //default ctor for Time object
 Time::Time() : m_hours(0), m_minutes(0), m_seconds(0) {};
 
@@ -73,10 +72,19 @@ bool operator< (const Time& left, const Time& right){
 
 }
 
+//default ctor for Date
+Date::Date() : m_day(0), m_month(0), m_year(0) {};
 
+//copy ctor for Date object
+Date::Date(const Date& i_date) : m_day(i_date.m_day), m_month(i_date.m_month), m_year(i_date.m_year) {};
+              
+//Date ctor with 3 parameters
+Date::Date(int i_day, int i_month, int i_year) : m_day(i_day), m_month(i_month), m_year(i_year) {};                            
+                                                
 
-input_data::input_data()
-{
+//default ctor for input_data object
+input_data::input_data() : m_start_time(Time()), m_date (Date()) {};
 
-
-}
+//ctor with 2 parameters for input_data object
+//set parameters to respective member variables
+input_data::input_data(const Time& i_start_time, const Date& i_date) : m_start_time(i_start_time), m_date(i_date) {};
