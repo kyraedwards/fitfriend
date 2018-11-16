@@ -8,8 +8,8 @@
 #include <QSpinBox>
 #include <QLineEdit>
 
-input_data_window::input_data_window(QWidget *parent) :
-    QMainWindow(parent),
+input_data_window::input_data_window(QWidget *parent, FitFriend* i_parent_window) :
+    QMainWindow(parent), parent_window(i_parent_window),
     ui(new Ui::FitFriend)
 {
     ui->setupUi(this);
@@ -23,7 +23,6 @@ input_data_window::input_data_window(QWidget *parent) :
     QPushButton* add_workout_button = new QPushButton("Workout");
     QPushButton* add_weight_button = new QPushButton("Weight");
     QPushButton* add_run_button = new QPushButton("Run");
-
 
     //connect 4 add buttons to their respective SLOTS
     QObject::connect(add_meal_button, SIGNAL(pressed()), this, SLOT(add_meal()));
@@ -49,6 +48,11 @@ input_data_window::input_data_window(QWidget *parent) :
 
 }
 
+void input_data_window::return_to_main(){
+    this->close();
+    parent_window->show();
+}
+
 
 input_data_window::~input_data_window()
 {
@@ -63,11 +67,16 @@ void input_data_window::add_workout(){
     QLabel* workout= new QLabel("Congrats on finishing your workout! Add the workout info below");
     QLabel* time_and_date = new QLabel("What were the time and date of this workout");
     QLabel* time_of_workout = new QLabel("How long was your workout");
+    QPushButton* submit_run = new QPushButton("Submit workout");
+    QObject::connect(submit_run, SIGNAL(clicked()), this, SLOT(return_to_main()));
 
     QVBoxLayout* layout = new QVBoxLayout;
     layout->addWidget(workout);
     layout->addWidget(time_and_date);
     layout->addWidget(time_of_workout);
+    layout->addWidget(submit_run);
+
+
 
     QWidget* wid = new QWidget;
     wid->setLayout(layout);
@@ -78,7 +87,6 @@ void input_data_window::add_workout(){
 void input_data_window::add_meal(){
    //this layout will hold the question labels and the answer input boxes
    QVBoxLayout* layout = new QVBoxLayout;
-
 
    QLabel* meal= new QLabel("Add yout meal below");
    QLabel* time_and_date = new QLabel("What were the time and date of this meal?");
@@ -126,6 +134,9 @@ void input_data_window::add_meal(){
    protein_in_drink_spin_box->setValue(0);
 
 
+   QPushButton* submit = new QPushButton("Submit meal");
+   QObject::connect(submit, SIGNAL(clicked()), this, SLOT(return_to_main()));
+
    layout->addWidget(meal);
    layout->addWidget(time_and_date);
    layout->addWidget(name_of_food);
@@ -144,7 +155,7 @@ void input_data_window::add_meal(){
    layout->addWidget(fat_in_drink_spin_box);
    layout->addWidget(protein_in_drink);
    layout->addWidget(protein_in_drink_spin_box);
-
+   layout->addWidget(submit);
 
    QWidget* wid = new QWidget;
    wid->setLayout(layout);
@@ -152,11 +163,32 @@ void input_data_window::add_meal(){
 }
 
 void input_data_window::add_run(){
-    QLabel* run= new QLabel("Add yout run");
-    run->show();
+    QVBoxLayout* buttons= new  QVBoxLayout;
+    QLabel* add_run= new QLabel("Add yout run");
+    QPushButton* submit= new QPushButton("Submit run");
+    QObject::connect(submit, SIGNAL(clicked()), this, SLOT(return_to_main()));
+
+    buttons->addWidget(add_run);
+    buttons->addWidget(submit);
+
+    //hosts entire data input window
+    QWidget* wid = new QWidget;
+    wid->setLayout(buttons);
+    setCentralWidget(wid);
+
 }
 
 void input_data_window::add_weight(){
+    QVBoxLayout* layout = new QVBoxLayout;
     QLabel* weight= new QLabel("Add yout weight");
-    weight->show();
+    QPushButton* submit= new QPushButton("Submit weight");
+    QObject::connect(submit, SIGNAL(clicked()), this, SLOT(return_to_main()));
+
+    layout->addWidget(weight);
+    layout->addWidget(submit);
+
+
+    QWidget* wid = new QWidget;
+    wid->setLayout(layout);
+    this->setCentralWidget(wid);
 }
