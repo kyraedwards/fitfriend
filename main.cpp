@@ -38,7 +38,6 @@ int main(int argc, char *argv[])
     main_menu.push_back(new QPushButton("My Progress"));
     main_menu.push_back(new QPushButton("Previous Workouts"));
     main_menu.push_back(new QPushButton("Advice From Kyra"));
-
     main_menu.push_back(new QPushButton("Plan My Route"));
     main_menu.push_back(new QPushButton("Set My Goals"));
 
