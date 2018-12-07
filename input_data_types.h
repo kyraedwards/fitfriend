@@ -1,45 +1,54 @@
 #ifndef INPUT_DATA_TYPES_H
 #define INPUT_DATA_TYPES_H
-#include <string>
 
+#include <string>
+#include <QString>
+
+
+//Hours, Minutes, and Seconds. Will be used to store information about workouts
 class Time{
 
 public:
 
-//default
-Time();
+    //default
+    Time();
 
-//copy ctor
-//member-wise copy
-Time(const Time& i_time);
+    //copy ctor
+    //member-wise copy
+    Time(const Time& i_time);
 
-//3 parameters
-Time(int i_hours, int i_minutes, double i_seconds);
+    //3 parameters
+    Time(int i_hours, int i_minutes, double i_seconds);
 
+    //converts to string to add to database in form 'yyyy-mm-dd'
+    QString to_string() const;
 
-//less than operator for two time objects
-//@param left is a time object on the left side of the comparison operator
-//@param right is a time object on the right side of the comparison operator
-//@return true if lhs is less than rhs
-//@return false otherwise
-friend bool operator< (const Time& left, const Time& right);
+    int to_mins() const;
 
+    //less than operator for two time objects
+    //@param left is a time object on the left side of the comparison operator
+    //@param right is a time object on the right side of the comparison operator
+    //@return true if lhs is less than rhs
+    //@return false otherwise
+    friend bool operator< (const Time& left, const Time& right);
 
-//subtraction operator for two time objects
-//@return the difference of the left time and right time
-//left is the Time object on the left side of the - operator
-//right is the Time object on the right side of the - operator
-friend Time operator- (const Time& left, const Time& right);
+    //subtraction operator for two time objects
+    //@return the difference of the left time and right time
+    //left is the Time object on the left side of the - operator
+    //right is the Time object on the right side of the - operator
+    friend Time operator- (const Time& left, const Time& right);
 
 private:
 
-//military time
-int m_hours;
-int m_minutes;
-double m_seconds;
+    //military time
+    int m_hours;
+    int m_minutes;
+    double m_seconds;
 
 };
 
+
+//Month, Day, and Year. Will be used to store information about workouts
 class Date{
 
 public:
@@ -62,39 +71,22 @@ private:
 
 };
 
-class input_data
-{
-public:
-
-    //default ctor
-    input_data();
-
-    //ctor with 2 parameters
-    //set parameters to respective member variables
-    input_data(const Time& i_start_time, const Date& i_date);
-
-private:
-
-    Time m_start_time;
-    Date m_date;
-
-};
-
-
-//class declerations
 
 class Profile{
 public:
-     Profile();
-    Profile(double );
+
+    Profile();
+    Profile(double);
     double to_imperial();
     double to_metric();
     double calc_cals(Time length);
-     //updates daily cals burned, used in update weight.
+
+    //updates daily cals burned, used in update weight.
     void update_daily_cals(double kgs);
-     //used in input weight to change profile.
-     void update_weight(double kgs){
-        weight= kgs;
+
+    //used in input weight to change profile.
+    void update_weight(double kgs){
+       weight = kgs;
         //weight change will change daily cals and calc cals.
         update_daily_cals(kgs);
     }
@@ -110,72 +102,97 @@ public:
     int age;
     double daily_cals;
  };
-class Run: public input_data{
+
+
+//a run object will be created when the user inputs info about a run he or she took
+class Run{
+
 public:
 
-    //default, sets all vals =0
+    //default ctor, sets all vals = 0
     Run();
 
-    //constructs base class object and user input.
-    Run(const Time &start_time, const Date &start_date,  double d, const Time &len);
+    //ctor with 3 parameters
+    //all member variables will be set to respective parameters
+    Run(double i_distance, const Time& i_time_spent_running, const Date& i_start_date);
 
 private:
-    double distance, cals_burned;
-    Time length;
+
+    //m_distance in meters
+    //m_cals to be calculated according to person's information
+    double m_distance, m_cals_burned;
+    Time m_time_spent_running;
+    Date m_date;
  };
 
 
+//will be created when the user inputs info about his/her weight
+class Weight {
 
- //Meal
-class Meal: public input_data{
 public:
-     //construct, base classs objecy and member fields initialized.
-    Meal(const Time &start_time, const Date& start_date, std::string i_food, std::string i_bev, double i_food_cals=0,
-         double i_bev_cals=0, double i_food_fat=0,double i_bev_fat=0, double i_food_prot=0, double i_bev_prot=0);
-  private:
-        std::string food, bev;
-        double food_cals, bev_cals, food_fat, bev_fat, food_prot, bev_prot;
- };
 
-
-
-
-class Weight: public input_data{
-public:
-    //defualt
+    //defualt ctor, set all member fields to 0
     Weight();
 
-    //gives daily weight to profile
-    void update_profile() ;
+    //constructor with 3 parameters
+    //all member variables will be set to respective parameters
+    Weight(double i_kgs, const Date& i_date);
 
-    //constructer with base class
-    Weight(const Time &start_time, const Date & start_date, double w);
+    //gives daily weight to profile
+    void update_profile();
 
 private:
-    double kgs;
+
+    double m_kgs;
+    Date m_date;
+
 };
 
 
+//will be created when the user inputs info about his/her workout
+class Workout {
 
-class Workout: public input_data{
 public:
 
     //default
     Workout();
 
     //constructor w/ params
-    Workout(const Time &start_time, const Date& start_date, const Time &len);
+    //all member variables will be set to respectice parameters
+    Workout(const Time& i_length, const Date& i_start_date);
 
- private:
+private:
 
-    //note, this member field is not initialized inconstructor, it is done through profile class fn, calc_cal.
+    //note, this member field is not initialized in constructor, it is done through profile class fn, calc_cal.
     //which can be called inside the constructor.
     double cals_burned;
 
     //user entered
     Time length;
+
+    Date m_date;
+
  };
 
+
+
+//a meal object will be created when the user inputs information regarding a meal he or she ate
+class Meal{
+
+public:
+
+    //construct, base classs object and initialize member fields.
+    //@params are the information about the meal. their respective member fields will be set to them
+    Meal(const Date& start_date, std::string i_food, std::string i_bev,
+         double i_food_cals = 0,double i_bev_cals = 0, double i_food_fat = 0,
+         double i_bev_fat = 0, double i_food_prot = 0, double i_bev_prot = 0);
+
+private:
+
+        QString food, bev;
+        double food_cals, bev_cals, food_fat, bev_fat, food_prot, bev_prot;
+        Date m_date;
+};
 
 
 #endif // INPUT_DATA_TYPES_H
